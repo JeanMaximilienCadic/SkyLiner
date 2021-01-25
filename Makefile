@@ -31,7 +31,7 @@ docker-build:
 		-t ${DOCKER_IMAGE} .
 
 docker-run-test-sample:
-	docker run --gpus all -name panoptic --rm \
+	docker run --gpus all --name panoptic --rm \
 		-e DISPLAY=${DISPLAY} \
 		-v ${PWD}:${WORKSPACE} \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -43,11 +43,11 @@ docker-run-test-sample:
 		-v ${PWD}:${WORKSPACE} \
 		${DOCKER_OPTS} \
 		${DOCKER_IMAGE} bash -c \
-		"wget -P /workspace/panoptic/ -c https://tri-ml-public.s3.amazonaws.com/github/realtime_panoptic/models/cvpr_realtime_pano_cityscapes_standalone_no_prefix.pth && \
+		"wget -P /workspace/panoptic/models -c https://tri-ml-public.s3.amazonaws.com/github/realtime_panoptic/models/cvpr_realtime_pano_cityscapes_standalone_no_prefix.pth && \
 		python scripts/demo.py \
 		--config-file configs/demo_config.yaml \
-		--input media/figs/test.png \
-		--pretrained-weight cvpr_realtime_pano_cityscapes_standalone_no_prefix.pth"
+		--root media/data \
+		--pretrained-weight models/cvpr_realtime_pano_cityscapes_standalone_no_prefix.pth"
 
 docker-start:
 	docker run --gpus all --name panoptic --rm \

@@ -1,0 +1,5 @@
+*.idea
+models/*.pth
+media/data
+media/output
+*__pycache__

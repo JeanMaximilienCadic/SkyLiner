@@ -70,6 +70,7 @@ ENV PYTHONPATH="/workspace"
 RUN pip install ninja yacs cython matplotlib opencv-python tqdm onnx onnxruntime coloredlogs scipy pycuda
 RUN pip uninstall -y pillow
 RUN pip install pillow-simd==6.2.2.post1 pycocotools 
+RUN pip install gnutools-python
 
 # Install apex
 WORKDIR /workspace
